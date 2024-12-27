@@ -3,3 +3,6 @@ connector:
   user: Administrator
   password: P@ssw0rd
   secure: True
+
+server:
+  port: 8080

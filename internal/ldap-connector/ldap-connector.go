@@ -5,16 +5,8 @@ import (
 	"strings"
 
 	"github.com/go-ldap/ldap/v3"
+	"github.com/klambri/ldap-api-bridge/internal/configuration"
 )
-
-type LdapConfig struct {
-	Connector struct {
-		Realm    string `yaml:"realm"`
-		User     string `yaml:"user"`
-		Password string `yaml:"password"`
-		Secure   bool   `yaml:"secure"`
-	} `yaml:"connector"`
-}
 
 var connector *ldap.Conn
 
@@ -35,7 +27,7 @@ func NewInstance(url string, username string, password string) error {
 	return err
 }
 
-func NewInstanceFromConfig(config *LdapConfig) error {
+func New(config *configuration.KlambriConfig) error {
 	var urlSb strings.Builder
 
 	if config.Connector.Secure {
